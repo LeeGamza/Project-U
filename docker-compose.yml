@@ -1,6 +1,6 @@
 version: "3.9"
 
-services: 
+services:
   nginx:
     build:
       context: ./nginx
@@ -13,7 +13,7 @@ services:
     # env_file:
     #   - .env
     # depends_on:
-      # - backend
+    # - backend
     restart: always
     networks:
       - ProjectU
@@ -40,5 +40,3 @@ networks:
 volumes:
   nginx_log:
     driver: local
-  # mongodb_data:
-  #   driver: local
