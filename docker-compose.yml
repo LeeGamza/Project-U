@@ -1,0 +1,44 @@
+version: "3.9"
+
+services: 
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ./nginx/certs/:/etc/nginx/ssl/
+      - nginx_log:/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    # env_file:
+    #   - .env
+    # depends_on:
+      # - backend
+    restart: always
+    networks:
+      - ProjectU
+
+  # mongodb:
+  #   build:
+  #     context: ./mongodb
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   ports:
+  #     - "27017:27017"
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - backend
+  #   restart: always
+  #   networks:
+  #     - ProjectU
+
+networks:
+  ProjectU:
+    driver: bridge
+
+volumes:
+  nginx_log:
+    driver: local
+  # mongodb_data:
+  #   driver: local
