@@ -1,6 +1,6 @@
 version: "3.9"
 
-services: 
+services:
   nginx:
     build:
       context: ./nginx
@@ -13,25 +13,26 @@ services:
     # env_file:
     #   - .env
     # depends_on:
-      # - backend
+    # - backend
     restart: always
     networks:
       - ProjectU
 
-  # mongodb:
-  #   build:
-  #     context: ./mongodb
-  #   volumes:
-  #     - mongodb_data:/data/db
-  #   ports:
-  #     - "27017:27017"
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - backend
-  #   restart: always
-  #   networks:
-  #     - ProjectU
+  # backend:
+  #   image:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    volumes:
+      - mongo_data:/data/db
+      - ./mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+    networks:
+      - ProjectU
 
 networks:
   ProjectU:
@@ -40,5 +41,5 @@ networks:
 volumes:
   nginx_log:
     driver: local
-  # mongodb_data:
-  #   driver: local
+  mongo_data:
+    driver: local
