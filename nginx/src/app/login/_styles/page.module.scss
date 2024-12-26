@@ -1,0 +1,65 @@
+.background {
+  background-image: url("/login_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.goHomeButton {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 150px;
+  height: 30px;
+  border: none;
+  background-color: white;
+}
+
+.loginContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.loginText {
+  font-weight: bold;
+  font-size: 48px;
+  margin-top: 20px;
+}
+
+.kakaoLoginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffec40;
+  border-radius: 20px;
+  width: 580px;
+  height: 103px;
+  font-size: 40px;
+  font-weight: bold;
+  gap: 20px;
+}
+
+.googleLoginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  width: 580px;
+  height: 103px;
+  font-size: 40px;
+  font-weight: bold;
+  gap: 20px;
+}
