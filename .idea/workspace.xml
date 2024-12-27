@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="" />
+    <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/page.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,18 +34,39 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Docker__Lee",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "develop",
     "last_opened_file_path": "C:/Unity Project/Project-U/Front",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Unity Project\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
+    "npm.dev.executor": "Run",
+    "ts.external.directory.path": "/Users/aaa/Desktop/GitHub/Project-U/nginx/src/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/nginx/src/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
       </set>
     </attachedChunks>
   </component>
@@ -55,6 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734573594755</updated>
       <workItem from="1734573595863" duration="176000" />
+      <workItem from="1735299541207" duration="3380000" />
     </task>
     <servers />
   </component>
@@ -67,7 +92,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/nginx/src/app/login/page.tsx</url>
           <line>2</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
