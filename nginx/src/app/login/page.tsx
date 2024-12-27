@@ -39,7 +39,10 @@ export default function Login() {
               <Image src="/KakaoLogo.png" alt="kakao" width={48} height={48} />
               카카오 계정으로 계속하기
             </button>
-            <button className={styles.googleLoginButton}>
+            <button
+              className={styles.googleLoginButton}
+              onClick={() => signIn("google")}
+            >
               <Image
                 src="/GoogleLogo.png"
                 alt="Google"
