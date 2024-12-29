@@ -46,22 +46,30 @@ public class KakaoLoginController {
      */
     @PostMapping("/kakao")
     public ResponseEntity<?> kakaoLogin(@RequestBody Map<String, String> request) {
+        System.out.println("Received request: " + request); // 요청 내용 확인
         String code = request.get("code");
         if (code == null || code.isEmpty()) {
-            return ResponseEntity.badRequest().body("인가 코드를 받지 못했습니다.");
+            System.out.println("Authorization code is missing");
+            return ResponseEntity.badRequest().body("Authorization code is missing");
         }
+
+        System.out.println("Authorization code received: " + code);
 
         // 1. 카카오 Access Token 요청
         String accessToken = getKakaoAccessToken(code);
         if (accessToken == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("카카오 Access Token 발급 실패");
+            System.out.println("Failed to retrieve Kakao Access Token");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to retrieve Kakao Access Token");
         }
+        System.out.println("Access Token: " + accessToken);
 
         // 2. 카카오 유저 정보 조회
         Map<String, Object> kakaoUserInfo = getKakaoUserInfo(accessToken);
         if (kakaoUserInfo == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("카카오 사용자 정보 조회 실패");
+            System.out.println("Failed to retrieve Kakao user info");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to retrieve Kakao user info");
         }
+        System.out.println("Kakao User Info: " + kakaoUserInfo);
 
         // 3. 카카오 유저 정보 파싱 (id, email, nickname 등)
         // 예: { id=123456789, kakao_account={profile={nickname=홍길동}, email=test@kakao.com }, ... }
@@ -102,17 +110,16 @@ public class KakaoLoginController {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-            // 카카오 토큰 요청용 파라미터
             MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
             params.add("grant_type", "authorization_code");
             params.add("client_id", kakaoRestApiKey);
             params.add("redirect_uri", kakaoRedirectUri);
             params.add("code", code);
 
-            HttpEntity<MultiValueMap<String, String>> requestEntity =
-                    new HttpEntity<>(params, headers);
+            HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
 
-            // 응답을 Map으로 받음
+            System.out.println("Requesting Kakao Access Token with params: " + params);
+
             ResponseEntity<Map> response = restTemplate.postForEntity(
                     KAKAO_TOKEN_URL,
                     requestEntity,
@@ -121,16 +128,24 @@ public class KakaoLoginController {
 
             if (response.getStatusCode().is2xxSuccessful()) {
                 Map<String, Object> body = response.getBody();
-                // access_token 필드 추출
+                System.out.println("Access Token Response: " + body);
                 return (String) body.get("access_token");
             } else {
+                // 카카오 응답 로그 추가
+                System.out.println("Failed to get access token: " + response.getStatusCode());
+                System.out.println("Response body: " + response.getBody());
                 return null;
             }
         } catch (Exception e) {
+            System.out.println("Exception occurred while requesting Kakao Access Token");
             e.printStackTrace();
             return null;
         }
     }
+
+
+
+
 
     /**
      * Access Token을 가지고 카카오 유저 정보 요청
