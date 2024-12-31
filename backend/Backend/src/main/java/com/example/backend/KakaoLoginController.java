@@ -1,17 +1,14 @@
 package com.example.backend;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -144,6 +141,25 @@ public class KakaoLoginController {
     }
 
 
+    private boolean validateAccessToken(String accessToken) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(accessToken);
+            HttpEntity<?> entity = new HttpEntity<>(headers);
+
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    "https://kapi.kakao.com/v1/user/access_token_info",
+                    HttpMethod.GET,
+                    entity,
+                    Map.class
+            );
+
+            return response.getStatusCode().is2xxSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 
@@ -153,26 +169,33 @@ public class KakaoLoginController {
     private Map<String, Object> getKakaoUserInfo(String accessToken) {
         try {
             HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(accessToken); // Bearer {accessToken}
-            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
+            headers.setBearerAuth(accessToken);
             HttpEntity<?> entity = new HttpEntity<>(headers);
 
-            // 카카오 사용자 정보 조회 (POST)
-            ResponseEntity<Map> response = restTemplate.postForEntity(
-                    KAKAO_USERINFO_URL,
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    "https://kapi.kakao.com/v2/user/me",
+                    HttpMethod.GET,
                     entity,
                     Map.class
             );
 
             if (response.getStatusCode().is2xxSuccessful()) {
+                System.out.println("User info retrieved successfully: " + response.getBody());
                 return response.getBody();
             } else {
+                System.out.println("Failed to retrieve user info: " + response.getStatusCode());
+                System.out.println("Response body: " + response.getBody());
                 return null;
             }
+        } catch (HttpClientErrorException e) {
+            System.out.println("HTTP error occurred: " + e.getResponseBodyAsString());
+            return null;
         } catch (Exception e) {
+            System.out.println("General error occurred: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
     }
+
+
 }
