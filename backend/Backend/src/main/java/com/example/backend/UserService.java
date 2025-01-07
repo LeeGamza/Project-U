@@ -46,6 +46,18 @@ public class UserService {
                 .compact();
     }
 
+    public boolean validateUserToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())     // <-- 여기서 사용
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     // Secret Key 반환
     private SecretKey getSigningKey() {
         byte[] keyBytes = SECRET_KEY.getBytes();
