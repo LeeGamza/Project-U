@@ -1,14 +1,14 @@
 .container {
   display: grid;
-  grid-template-rows: 60vh auto 40vh; /* 상단 30vh, 중간 auto, 하단 40vh */
-  height: 110vh; /* 뷰포트 전체 높이 */
+  grid-template-rows: 60vh auto 40vh;
+  height: 110vh;
   background-image: url('/BackGround_Intro.png');
   background-size: cover;
   background-position: center;
 }
 
 .up {
-  grid-row: 1; /* 상단 영역 */
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .down {
-  grid-row: 3; /* 하단 영역 */
+  grid-row: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,7 @@
 
 .kWorld {
   width: 50vw;
-  height: auto; /* 자동 높이 설정 */
+  height: auto;
 }
 
 .sKImage {
