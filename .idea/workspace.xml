@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/app/intro/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/intro/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/public/BackGroundWorld.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/public/World.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +38,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Create__Intro__Page&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/sp079/Desktop/Project-U&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -45,7 +49,7 @@
     &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\sp079\\Desktop\\Project-U\\nginx\\src\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\React Project\\Project-U\\nginx\\src\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -69,8 +73,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
       </set>
     </attachedChunks>
   </component>
@@ -89,6 +92,8 @@
       <workItem from="1735799316185" duration="9000" />
       <workItem from="1735799357344" duration="381000" />
       <workItem from="1736233115912" duration="175000" />
+      <workItem from="1736297133327" duration="6508000" />
+      <workItem from="1736415466717" duration="876000" />
     </task>
     <servers />
   </component>
