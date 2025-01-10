@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./_styles/intro.module.scss";
 
@@ -8,30 +8,32 @@ export default function IntroPage() {
         <div className={styles.container}>
 
             <div className={styles.up}>
-                <Image
-                    src="/logo.png"
-                    alt="logo"
-                    width={100}
-                    height={100}
-                    className={styles.logoImage}
+                <div className={styles.logo}>
+                    <Image
+                        src="/logo.png"
+                        alt="logo"
+                        layout="responsive"
+                        width={100}
+                        height={100}
+                        className={styles.logoImage}
                     />
+                </div>
                 <div className={styles.logoText}>TRIPSTORY</div>
 
                 <div className={styles.login}>
-
-                    <div className={styles.loginImage}>
+                    <Link href="/login" className={styles.loginImage}>
                         <Image
                             src="/LogIn_Intro.png"
                             alt="login_icon"
+                            layout="responsive"
                             width={20}
                             height={20}
                             className={styles.logoImage}
-                        />
-                    </div>
-
-                    <div className={styles.loginText}>
+                            />
+                    </Link>
+                    <Link href="/login" className={styles.loginText}>
                         로그인
-                    </div>
+                    </Link>
                 </div>
             </div>
 
@@ -45,6 +47,7 @@ export default function IntroPage() {
                     <Image
                         src="/KoreaWorld_Intro.png"
                         alt="World"
+                        layout="responsive"
                         width={800}
                         height={800}
                         className={styles.worldImage}
@@ -55,6 +58,7 @@ export default function IntroPage() {
                     <Image
                         src="/SouthKorea_Intro.png"
                         alt="SouthK"
+                        layout="responsive"
                         width={300}
                         height={300}
                         className={styles.southKImage}
