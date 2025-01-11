@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +37,9 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Create__Intro__Page",
+    "git-widget-placeholder": "Connect__DB",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/sp079/Desktop/Project-U",
+    "last_opened_file_path": "C:/Users/sp079/Desktop/Project-U/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -45,7 +48,7 @@
     "project.structure.last.edited": "모듈",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "ts.external.directory.path": "C:\\Unity Project\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\sp079\\Desktop\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -69,7 +72,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -91,6 +95,7 @@
       <workItem from="1736297133327" duration="6508000" />
       <workItem from="1736415466717" duration="876000" />
       <workItem from="1736486248746" duration="5551000" />
+      <workItem from="1736617670965" duration="595000" />
     </task>
     <servers />
   </component>
