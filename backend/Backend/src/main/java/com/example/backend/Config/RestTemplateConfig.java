@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.Config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
