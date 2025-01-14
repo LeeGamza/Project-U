@@ -40,7 +40,21 @@ export default function IntroPage() {
             <div className={styles.down}>
 
                 <div className={styles.downText}>
-                    <p className={styles.indentedText}>대한민국 지역들을 <br /> 여행하고 기록해보세요.</p>
+                    <p className={styles.indentedText}>대한민국 지역들을 <br/> 여행하고 기록해보세요.</p>
+                </div>
+
+                <div className={styles.downText_WithUs}>
+                    With Us
+                </div>
+
+                <div className={styles.downGoogleMaps}>
+                    <Image
+                        src="/googleMaps.png" /* 실제 이미지 경로 */
+                        alt="Google Map Icon"
+                        width={50} /* 아이콘 너비 */
+                        height={50} /* 아이콘 높이 */
+                        className={styles.mapIcon}
+                    />
                 </div>
 
                 <div className={styles.kWorld}>
@@ -64,6 +78,33 @@ export default function IntroPage() {
                         className={styles.southKImage}
                     />
                 </div>
+
+                <div className={styles.smallBoxes}>
+                    {[
+                        {text: "0%", color: "#D9D9D9"},
+                        {text: "1~32%", color: "#FE9691"},
+                        {text: "33~65%", color: "#A7DBE8"},
+                        {text: "66~99%", color: "#A0D468"},
+                        {text: "100%", color: "#FFD700"},
+                    ].map((box, index) => (
+                        <div
+                            key={index}
+                            className={`${styles.smallBox} ${styles[`smallBox${index + 1}`]}`}>
+
+                            <span
+                                className={styles.boxLabel}
+                                style={{color: box.color}}>
+                                {box.text}
+                            </span>
+
+                        </div>
+                    ))}
+                </div>
+
+                <div className={styles.underR_Text}>
+                    <p>개인의 여행기록 남기며 나라 전체를 <br/> 황금 빛으로 빛내 보세요!</p>
+                </div>
+
             </div>
         </div>
     );
