@@ -1,32 +1,58 @@
-package com.example.backend;
+package com.example.backend.Service;
 
-import com.example.backend.User;
+import com.example.backend.Entity.User;
+import com.example.backend.Repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
 public class UserService {
 
     // JWT Secret Key (환경변수 또는 application.yml에서 관리 권장)
-    private static final String SECRET_KEY = "very-secure-secret-key";
+    private static final String SECRET_KEY = "very-very-very-secure-secret-key";
 
     // JWT 만료 시간 (1시간)
     private static final long EXPIRATION_TIME = 3600000; // 1시간
 
-    // 카카오 사용자 정보를 토대로 신규 사용자 생성 혹은 기존 사용자 조회
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public User findOrCreateUserByKakao(Object kakaoId, String email, String nickname) {
-        // 실제로는 DB에서 사용자 조회 또는 신규 생성 로직 필요
-        User user = new User();
-        user.setId(1L); // DB에서 발급된 ID
-        user.setKakaoId(String.valueOf(kakaoId));
-        user.setEmail(email);
-        user.setNickname(nickname);
-        return user;
+        // 1) kakaoId로 DB 조회
+        String kakaoIdStr = String.valueOf(kakaoId);
+        User user = userRepository.findByKakaoId(kakaoIdStr);
+
+        // 2) DB에 이미 존재하면 그대로 반환
+        if (user != null) {
+            return user;
+        }
+
+        // 3) 없으면 새로 만들어서 저장
+        User newUser = new User();
+        newUser.setKakaoId(kakaoIdStr);
+        newUser.setEmail(email);
+        newUser.setNickname(nickname);
+
+        newUser.setPassword(""); // 비밀번호가 필요 없어서 ""-> null값으로 처리하려고 비워놨음
+        newUser.setCreatedAt(LocalDateTime.now()); // 가입 시점 기록
+        newUser.setRecordUserId(0);                // 기본값 0
+        newUser.setVisitedLocationUserId(0);
+        newUser.setLikeUserId(0);
+        newUser.setSearchlogUserId(0);
+
+        // 4) 새 유저를 DB에 저장
+        userRepository.save(newUser);
+
+        return newUser;
     }
 
     // JWT 발급
@@ -37,7 +63,7 @@ public class UserService {
 
         // JWT 생성
         return Jwts.builder()
-                .setSubject(user.getId().toString()) // 사용자 ID를 서브젝트로 설정
+                .setSubject(user.getUserId().toString()) // 사용자 ID를 서브젝트로 설정
                 .claim("email", user.getEmail())     // 추가 클레임 (이메일)
                 .claim("nickname", user.getNickname()) // 추가 클레임 (닉네임)
                 .setIssuedAt(now)                    // 발급 시간
@@ -49,7 +75,7 @@ public class UserService {
     public boolean validateUserToken(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey())     // <-- 여기서 사용
+                    .setSigningKey(getSigningKey())
                     .build()
                     .parseClaimsJws(token);
             return true;

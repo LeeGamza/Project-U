@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -7,13 +7,15 @@ import java.time.LocalDateTime;
 @Table(name = "users") // MySQL 테이블 이름 지정
 public class User {
 
-    private Long id;
-    private String kakaoId;
-
+    // === PK (Primary Key) ===
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary Key, AUTO_INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
     @Column(name = "user_id")
     private Long userId;
+
+    // === 카카오 로그인용 ID (DB 컬럼명: kakao_id) ===
+    @Column(name = "kakao_id")
+    private String kakaoId;
 
     @Column(name = "email", nullable = false, length = 40)
     private String email;
@@ -33,8 +35,9 @@ public class User {
     @Column(name = "record_user_id", nullable = false)
     private int recordUserId;
 
-    @Column(name = "visited_location_user_id", nullable = false)
+    @Column(name = "visited_location_user_id")
     private int visitedLocationUserId;
+
 
     @Column(name = "like_user_id", nullable = false)
     private int likeUserId;
@@ -42,13 +45,21 @@ public class User {
     @Column(name = "searchlog_user_id", nullable = false)
     private int searchlogUserId;
 
-    // Getters and Setters 부분
+    // === Getters / Setters ===
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getKakaoId() {
+        return kakaoId;
+    }
+
+    public void setKakaoId(String kakaoId) {
+        this.kakaoId = kakaoId;
     }
 
     public String getEmail() {
@@ -123,27 +134,12 @@ public class User {
         this.searchlogUserId = searchlogUserId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getKakaoId() {
-        return kakaoId;
-    }
-
-    public void setKakaoId(String kakaoId) {
-        this.kakaoId = kakaoId;
-    }
-
-
+    // === toString ===
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
+                ", kakaoId='" + kakaoId + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
@@ -155,5 +151,4 @@ public class User {
                 ", searchlogUserId=" + searchlogUserId +
                 '}';
     }
-
 }
