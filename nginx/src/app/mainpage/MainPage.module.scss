@@ -1,0 +1,400 @@
+// Home.module.scss
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background-color: #b8e2f2;
+  width: 100%;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 5px;
+  font-size: 30px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 600px;
+}
+
+.searchInput {
+  padding: 12px 300px 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 16px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+.createPostButton {
+  margin-left: 35px;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #ffcb00;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.bellicon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+.chaticon {
+  margin-left: 8px;
+  margin-bottom: 2px;
+  padding: 8px 12px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.profileIcon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 40px;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 1px;
+}
+
+.dropdownIcon {
+
+  padding: 8px 12px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 2.9fr 1.1fr;
+  gap: 25px;
+  padding: 20px;
+}
+
+.leftColumn {
+  /* Left Column styles */
+}
+
+.sectionTitle {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 45px;
+  column-gap: 45px;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.cardImage {
+  height: 250px;
+  width: 100%;
+  background-color: #eaeaea;
+}
+
+.cardContent {
+  padding: 10px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cardTitle {
+  margin: 0;
+}
+
+.cardDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardRating {
+  font-size: 14px;
+  color: #555;
+}
+
+.cardUser {
+  font-size: 14px;
+  color: #777;
+}
+
+.rightColumn {
+  background-color: #e8f5e9;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0 4px 6px rgba(50, 10, 250, 0.5);
+  height: 270px;
+  margin-top: 80px;
+}
+
+.hallOfFameTitle {
+  margin-bottom: -5px;
+  text-align: center;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.hallOfFameSubtitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: -5px;
+  margin-bottom: -12px;
+}
+
+.topUser {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.hallOfFameList {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.hallOfFameItem {
+  margin-left: 15px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+
+  .rightColumn {
+    margin-top: 20px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchContainer {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .createPostButton {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+
+  .cardImage {
+    height: 150px;
+  }
+
+  .rightColumn {
+    display: none;
+  }
+}
+
+//----------------------
+
+.notificationItem {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 좌우 정렬 */
+  padding: 10px; /* 적절한 여백 */
+  border-bottom: 1px solid #777777; /* 구분선 */
+}
+
+.profileImage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover; /* 이미지 비율 유지 */
+  margin-right: 10px; /* 글과 여백 추가 */
+}
+.postImage {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  margin-left: 10px; /* 글과 여백 추가 */
+}
+
+.notificationText {
+  flex: 1; /* 남은 공간 채우기 */
+  text-align: left; /* 글 왼쪽 정렬 */
+  font-size: 13px;
+}
+
+.lines{
+  border: #555555 solid 0.5px;
+  margin-bottom: 1px;
+}
+//----------------------
+.bellBox {
+  position: absolute;
+  top: 87px; /* 벨 아이콘 아래로 위치 */
+  right: 100px; /* 벨 아이콘 기준으로 정렬 */
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.bellList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bellList li {
+  padding: 8px;
+  font-size: 12px;
+}
+//---------------------
+.messageBox {
+  position: absolute;
+  top: 87px;
+  right: 100px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 스크롤 활성화 */
+  z-index: 1000;
+}
+
+.messageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.messageItem {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 좌우 정렬 */
+  padding: 10px; /* 적절한 여백 */
+  border-bottom: 1px solid #777777; /* 구분선 */
+}
+
+.profileImage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover; /* 이미지 비율 유지 */
+  margin-right: 10px; /* 텍스트와 간격 추가 */
+}
+
+.messageText {
+  flex-grow: 1; /* 남은 공간 채우기 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  font-size: 13px;
+}
+//------------------------
+
+.dropdownMenu {
+  position: absolute;
+  top: 87px; /* 아이콘 위치 기준 조정 */
+  right: 80px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 140px;
+  height: 96px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}

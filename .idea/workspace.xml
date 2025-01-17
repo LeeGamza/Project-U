@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/nginx/src/app/mainpage/MainPage.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx/src/app/mainpage/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/intro/_styles/intro.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nginx/src/app/intro/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/intro/page.tsx" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/nginx/src/app/page.tsx" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +38,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -49,6 +56,25 @@
     "project.structure.side.proportion": "0.0",
     "ts.external.directory.path": "C:\\React Project\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sp079/Desktop/Project-U&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/aaa/Desktop/GitHub/Project-U/nginx/src/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> Stashed changes
   }
 }]]></component>
   <component name="RunManager">
@@ -71,7 +97,11 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+<<<<<<< Updated upstream
         <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+=======
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+>>>>>>> Stashed changes
       </set>
     </attachedChunks>
   </component>
@@ -90,11 +120,16 @@
       <workItem from="1735799316185" duration="9000" />
       <workItem from="1735799357344" duration="381000" />
       <workItem from="1736233115912" duration="175000" />
+<<<<<<< Updated upstream
       <workItem from="1736297133327" duration="6508000" />
       <workItem from="1736415466717" duration="876000" />
       <workItem from="1736486248746" duration="5551000" />
       <workItem from="1736617670965" duration="595000" />
       <workItem from="1736833546478" duration="4975000" />
+=======
+      <workItem from="1736496212630" duration="159000" />
+      <workItem from="1736496375371" duration="8287000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
