@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // 특정 필드(kakaoId) 기준으로 사용자 검색하는 쿼리 메서드 예시
     User findByKakaoId(String kakaoId);
+
+    User findByEmail(String email);
 }

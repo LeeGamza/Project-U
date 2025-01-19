@@ -55,6 +55,22 @@ public class UserService {
         return newUser;
     }
 
+    public com.example.backend.Entity.User findOrCreateUserByGoogle(String email, String name) {
+        // 1) 이메일로 유저 검색
+        com.example.backend.Entity.User user = userRepository.findByEmail(email);
+
+        // 2) 유저가 없으면 새로 생성
+        if (user == null) {
+            user = new User();
+            user.setEmail(email);
+            user.setNickname(name);
+            user.setPassword(""); // 빈 문자열로 기본 설정
+            user.setCreatedAt(LocalDateTime.now());
+            userRepository.save(user);
+        }
+        return user;
+    }
+
     // JWT 발급
     public String createServiceToken(User user) {
         // 현재 시간과 만료 시간 계산
