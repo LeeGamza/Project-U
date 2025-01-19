@@ -14,10 +14,14 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/token/**").permitAll() // 이 줄 추가!
+                        .requestMatchers("/api/auth/**", "/login/oauth2/**").permitAll()
                         .anyRequest().authenticated()
+                )
+                .oauth2Login(oauth2 -> oauth2
+                        .defaultSuccessUrl("/api/auth/google/login/success", true)
+                        .failureUrl("/api/auth/google/failure")
                 );
+
         return http.build();
     }
 }

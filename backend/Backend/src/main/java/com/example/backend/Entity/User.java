@@ -38,12 +38,15 @@ public class User {
     @Column(name = "visited_location_user_id")
     private int visitedLocationUserId;
 
-
     @Column(name = "like_user_id", nullable = false)
     private int likeUserId;
 
     @Column(name = "searchlog_user_id", nullable = false)
     private int searchlogUserId;
+
+    @Column(name = "provider")
+    private String provider;
+
 
     // === Getters / Setters ===
     public Long getUserId() {
@@ -134,6 +137,12 @@ public class User {
         this.searchlogUserId = searchlogUserId;
     }
 
+    public String getProvider() {
+        return provider;
+    }
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
     // === toString ===
     @Override
     public String toString() {
