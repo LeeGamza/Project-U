@@ -25,7 +25,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    //카카오 로그인 로직
     public User findOrCreateUserByKakao(Object kakaoId, String email, String nickname) {
         // 1) kakaoId로 DB 조회
         String kakaoIdStr = String.valueOf(kakaoId);
@@ -43,18 +43,18 @@ public class UserService {
         newUser.setNickname(nickname);
 
         newUser.setPassword(""); // 비밀번호가 필요 없어서 ""-> null값으로 처리하려고 비워놨음
-        newUser.setCreatedAt(LocalDateTime.now()); // 가입 시점 기록
-        newUser.setRecordUserId(0);                // 기본값 0
-        newUser.setVisitedLocationUserId(0);
-        newUser.setLikeUserId(0);
-        newUser.setSearchlogUserId(0);
+        newUser.setCreatedAt(LocalDateTime.now());  // 가입 시점 기록
+        newUser.setRecordUserId(0);                 // 기본값 0
+        newUser.setVisitedLocationUserId(0);        // 기본값 0
+        newUser.setLikeUserId(0);                   // 기본값 0
+        newUser.setSearchlogUserId(0);              // 기본값 0
 
         // 4) 새 유저를 DB에 저장
         userRepository.save(newUser);
 
         return newUser;
     }
-
+    //구글 로그인 로직
     public com.example.backend.Entity.User findOrCreateUserByGoogle(String email, String name) {
         // 1) 이메일로 유저 검색
         com.example.backend.Entity.User user = userRepository.findByEmail(email);
@@ -87,7 +87,7 @@ public class UserService {
                 .signWith(SignatureAlgorithm.HS256, getSigningKey()) // 서명
                 .compact();
     }
-
+    //JWT 토큰 검증
     public boolean validateUserToken(String token) {
         try {
             Jwts.parserBuilder()

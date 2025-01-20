@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.Controller;
 
 import com.example.backend.Service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,11 @@ public class TokenController {
         this.userService = userService;
     }
 
-    /**
-     * [예시 1]
-     * 프론트엔드에서 JSON 바디로 { "token": "...", "additionalData": "..." } 형태로 보내는 상황
-     * (Authorization 헤더는 사용하지 않고, 바디로만 토큰을 받는 경우)
-     */
+    //프론트엔드에서 JSON 바디로 { "token": "...", "additionalData": "..." } 형태로 보낼 경우
     @PostMapping("/body")
     public ResponseEntity<?> receiveTokenFromBody(@RequestBody Map<String, String> request) {
 
-        // 1) Request Body에서 토큰 추출
+        // 1) Request Body에서 토큰 추출, 실패 로그
         String token = request.get("token");
         String additionalData = request.get("additionalData");
 
@@ -32,25 +28,21 @@ public class TokenController {
             return ResponseEntity.badRequest().body("No token provided in the request body.");
         }
 
-        // 2) 토큰 검증 로직 (UserService에 구현했다고 가정)
+        // 2) 토큰 검증 로직 (UserService에 구현), 실패 로그
         boolean isValid = userService.validateUserToken(token);
 
         if (!isValid) {
             return ResponseEntity.status(401).body("Invalid or expired token.");
         }
 
-        // 3) 토큰이 유효하다면, 필요한 로직 (ex. DB 조회, 사용자 정보 반환 등)
-        //    여기서는 단순히 '추가 데이터'를 로그로 찍고, 'token valid'라는 응답을 줌.
+        // 3) 토큰이 유효하다면, 로직 실행
         System.out.println("Additional data from body: " + additionalData);
 
         return ResponseEntity.ok("Token is valid. additionalData = " + additionalData);
     }
 
-    /**
-     * [예시 2]
-     * 프론트엔드에서 헤더에 Authorization: Bearer <TOKEN>
-     * + JSON 바디에는 추가 정보만 담아서 보내는 경우
-     */
+    //프론트엔드에서 헤더에 Authorization: Bearer <TOKEN>, JSON 바디에는 추가 정보만 담아서 보내는 경우
+    //위랑 아래 중에 뭐일지 몰라서 2개 다 해놨음
     @PostMapping("/header")
     public ResponseEntity<?> receiveTokenFromHeader(
             @RequestHeader(value = "Authorization", required = false) String authorizationHeader,
@@ -63,7 +55,7 @@ public class TokenController {
             token = authorizationHeader.substring(7);
         }
 
-        // 2) 바디에도 무언가 additionalData가 있을 수 있음
+        // 2) 바디에도 additionalData가 있으면 추출
         String additionalData = (body != null) ? body.get("additionalData") : null;
 
         if (token == null || token.isEmpty()) {
