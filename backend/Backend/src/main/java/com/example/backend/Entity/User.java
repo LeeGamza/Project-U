@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Table(name = "users") // MySQL 테이블 이름 지정
 public class User {
 
+    //테이블 수정 예정이라 바뀔 예정
     // === PK (Primary Key) ===
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT

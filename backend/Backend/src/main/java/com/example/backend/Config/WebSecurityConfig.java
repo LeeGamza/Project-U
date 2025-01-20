@@ -12,11 +12,12 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable) //카카오 로그인
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/login/oauth2/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                //구글 로그인
                 .oauth2Login(oauth2 -> oauth2
                         .defaultSuccessUrl("/api/auth/google/login/success", true)
                         .failureUrl("/api/auth/google/failure")
