@@ -49,10 +49,10 @@ export default function IntroPage() {
 
                 <div className={styles.downGoogleMaps}>
                     <Image
-                        src="/googleMaps.png" /* 실제 이미지 경로 */
+                        src="/googleMaps.png"
                         alt="Google Map Icon"
-                        width={50} /* 아이콘 너비 */
-                        height={50} /* 아이콘 높이 */
+                        width={50}
+                        height={50}
                         className={styles.mapIcon}
                     />
                 </div>

@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/.idea
 
 # testing
 /coverage
@@ -16,6 +17,7 @@
 # production
 /build
 .env
+.idea
 
 # misc
 .DS_Store

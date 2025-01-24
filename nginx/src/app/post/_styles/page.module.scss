@@ -9,10 +9,88 @@
   flex-direction: column;
 }
 
-.textEditButtonBar {
+.postContainer {
   display: flex;
+  //   justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.searchContainer {
+  border: solid gray 1px;
+  border-radius: 25px;
   background-color: white;
-  border: solid black 1px;
-  padding: 20px;
-  gap: 20px;
+  width: 400px;
+  height: 250px;
+  padding: 15px;
+  margin: 50px;
+}
+
+.textAreaContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 400px;
+  height: 60px;
+  border: solid gray 1px;
+  border-radius: 20px;
+}
+
+.textArea {
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  font-size: 20px;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  text-align: center;
+}
+
+.FiSearch {
+  width: 50px;
+  height: 50px;
+}
+
+.postEditContainer {
+  width: 900px;
+  height: 100%;
+  border: solid gray 1px;
+  background-color: white;
+}
+
+.textArea2 {
+  width: 95%;
+  height: 50px;
+  padding: 5px;
+  font-size: 50px;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 20px;
+}
+
+.postEditContainer {
+}
+
+.textArea3 {
+  display: flex;
+  flex: 1;
+  width: 95%;
+  height: 85%;
+  padding: 5px;
+  font-size: 20px;
+  resize: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 20px;
+  //   border: 1px solid gray;
+}
+
+.line {
+  border-bottom: 1px solid gray;
 }

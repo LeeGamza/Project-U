@@ -1,17 +1,32 @@
 import styles from "./_styles/page.module.scss";
+import TopEditBar from "./_component/topEditBar";
+import { FiSearch } from "react-icons/fi";
 
 export default function Post() {
   return (
     <div className={styles.background}>
       {/* <Topbar /> */}
-      <div className={styles.textEditButtonBar}>
-        <button>뒤로가기</button>
-        <button>여행장소</button>
-        <button>사진 첨부하기</button>
-        <button>굵은 글씨체</button>
-        <button>기울임 글씨체</button>
-        <button>텍스트 색깔</button>
-        <button>게시물 올리기</button>
+      <TopEditBar />
+      <div className={styles.postContainer}>
+        <div className={styles.searchContainer}>
+          <div className={styles.textAreaContainer}>
+            <textarea
+              className={styles.textArea}
+              placeholder="어디로 여행을 가셨나요?"
+            ></textarea>
+            <FiSearch className={styles.FiSearch} />
+          </div>
+        </div>
+        <div className={styles.postEditContainer}>
+          <div className={styles.postEditContainer}>
+            <textarea className={styles.textArea2} placeholder="제목" />
+            <div className={styles.line}></div>
+            <textarea
+              className={styles.textArea3}
+              placeholder="여러분들의 경험을 마음껏 펼쳐보세요!"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
