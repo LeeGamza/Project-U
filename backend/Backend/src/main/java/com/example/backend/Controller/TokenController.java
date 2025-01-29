@@ -16,61 +16,42 @@ public class TokenController {
         this.userService = userService;
     }
 
-    //프론트엔드에서 JSON 바디로 { "token": "...", "additionalData": "..." } 형태로 보낼 경우
-    @PostMapping("/body")
-    public ResponseEntity<?> receiveTokenFromBody(@RequestBody Map<String, String> request) {
-
-        // 1) Request Body에서 토큰 추출, 실패 로그
-        String token = request.get("token");
-        String additionalData = request.get("additionalData");
-
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.badRequest().body("No token provided in the request body.");
-        }
-
-        // 2) 토큰 검증 로직 (UserService에 구현), 실패 로그
-        boolean isValid = userService.validateUserToken(token);
-
-        if (!isValid) {
-            return ResponseEntity.status(401).body("Invalid or expired token.");
-        }
-
-        // 3) 토큰이 유효하다면, 로직 실행
-        System.out.println("Additional data from body: " + additionalData);
-
-        return ResponseEntity.ok("Token is valid. additionalData = " + additionalData);
-    }
-
-    //프론트엔드에서 헤더에 Authorization: Bearer <TOKEN>, JSON 바디에는 추가 정보만 담아서 보내는 경우
-    //위랑 아래 중에 뭐일지 몰라서 2개 다 해놨음
-    @PostMapping("/header")
-    public ResponseEntity<?> receiveTokenFromHeader(
+    // ✅ 액세스 토큰이 만료되었을 경우, 자동으로 재발급하여 반환 (리프레시 토큰 활용)
+    @PostMapping("/validate")
+    public ResponseEntity<?> validateAndRefreshToken(
             @RequestHeader(value = "Authorization", required = false) String authorizationHeader,
-            @RequestBody(required = false) Map<String, String> body
-    ) {
+            @RequestHeader(value = "Refresh-Token", required = false) String refreshToken) {
 
         // 1) Authorization 헤더에서 "Bearer " 뒷부분만 추출
-        String token = null;
+        String accessToken = null;
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            token = authorizationHeader.substring(7);
+            accessToken = authorizationHeader.substring(7);
         }
 
-        // 2) 바디에도 additionalData가 있으면 추출
-        String additionalData = (body != null) ? body.get("additionalData") : null;
-
-        if (token == null || token.isEmpty()) {
-            return ResponseEntity.badRequest().body("No Bearer token found in Authorization header.");
+        if (accessToken == null || accessToken.isEmpty()) {
+            return ResponseEntity.badRequest().body("No access token provided.");
         }
 
-        // 3) 토큰 검증
-        boolean isValid = userService.validateUserToken(token);
-        if (!isValid) {
-            return ResponseEntity.status(401).body("Invalid or expired token.");
+        // 2) 액세스 토큰 검증
+        boolean isValid = userService.validateUserToken(accessToken);
+        if (isValid) {
+            return ResponseEntity.ok("Access token is valid.");
         }
 
-        // 4) 토큰이 유효하다면 후속 로직 수행
-        System.out.println("Additional data from body: " + additionalData);
+        // 3) 액세스 토큰이 만료되었을 경우, 리프레시 토큰으로 새 액세스 토큰 발급 시도
+        if (refreshToken == null || refreshToken.isEmpty()) {
+            return ResponseEntity.status(401).body("Access token expired. No refresh token provided.");
+        }
 
-        return ResponseEntity.ok("Header token is valid. additionalData = " + additionalData);
+        // 4) 리프레시 토큰이 유효한지 확인
+        String newAccessToken = userService.refreshAccessToken(refreshToken);
+        if (newAccessToken == null) {
+            return ResponseEntity.status(401).body("Refresh token expired. Please log in again.");
+        }
+
+        // 5) 새로운 액세스 토큰을 응답 헤더에 추가 후 반환
+        return ResponseEntity.ok()
+                .header("Authorization", "Bearer " + newAccessToken)
+                .body("Access token refreshed successfully.");
     }
 }

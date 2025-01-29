@@ -6,24 +6,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 
+// ✅ 액세스 토큰 + 리프레시 토큰 관리 추가
 @RestController
-@RequestMapping("/api/auth") //카카오 로그인 post
+@RequestMapping("/api/auth")
 public class KakaoLoginController {
 
-    @Value("${kakao.rest-api-key}") //이거랑
+    @Value("${kakao.rest-api-key}")
     private String kakaoRestApiKey;
 
-    @Value("${kakao.redirect-uri}") //이거.env 나 set으로 설정 해야 할듯 나중에
+    @Value("${kakao.redirect-uri}")
     private String kakaoRedirectUri;
 
     private static final String KAKAO_TOKEN_URL = "https://kauth.kakao.com/oauth/token";
@@ -37,18 +35,24 @@ public class KakaoLoginController {
         this.userService = userService;
     }
 
-    @PostMapping("/kakao") //post 요청 처리
+    // ✅ 카카오 로그인 API (리프레시 토큰 저장 포함)
+    @PostMapping("/kakao")
     public ResponseEntity<?> kakaoLogin(@RequestBody Map<String, String> request) {
         String code = request.get("code");
         if (code == null || code.isEmpty()) {
             return ResponseEntity.badRequest().body("Authorization code is missing");
         }
-        //액세스 요청 처리, 실패 로그
-        String accessToken = getKakaoAccessToken(code);
-        if (accessToken == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to retrieve Kakao Access Token");
+
+        // ✅ 카카오 액세스 토큰 및 리프레시 토큰 요청
+        Map<String, String> tokens = getKakaoAccessToken(code);
+        String accessToken = tokens.get("access_token");
+        String refreshToken = tokens.get("refresh_token");
+
+        if (accessToken == null || refreshToken == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to retrieve Kakao tokens");
         }
-        //사용자 정보 요청, 실패 로그
+
+        // ✅ 카카오 사용자 정보 가져오기
         Map<String, Object> kakaoUserInfo = getKakaoUserInfo(accessToken);
         if (kakaoUserInfo == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to retrieve Kakao user info");
@@ -68,59 +72,81 @@ public class KakaoLoginController {
             }
         }
 
-        User user = userService.findOrCreateUserByKakao(kakaoId, email, nickname); //조회 or 생성
-        String serviceToken = userService.createServiceToken(user); //토큰 생성
+        // ✅ 사용자 저장 (리프레시 토큰도 함께 저장)
+        User user = userService.findOrCreateUserByKakao(String.valueOf(kakaoId), email, nickname, refreshToken);
+        String serviceToken = userService.createServiceToken(user);
 
-        Map<String, String> response = new HashMap<>();
-        response.put("token", serviceToken);
-
-        return ResponseEntity.ok(response);
+        // ✅ 클라이언트에 액세스 토큰 & 리프레시 토큰 반환
+        return ResponseEntity.ok(Map.of(
+                "access_token", serviceToken,
+                "refresh_token", refreshToken
+        ));
     }
-    //
-    private String getKakaoAccessToken(String code) {
+
+    // ✅ 리프레시 토큰을 이용한 액세스 토큰 재발급
+    @PostMapping("/kakao/refresh")
+    public ResponseEntity<?> refreshKakaoAccessToken(@RequestBody Map<String, String> request) {
+        String refreshToken = request.get("refresh_token");
+
+        if (refreshToken == null || refreshToken.isEmpty()) {
+            return ResponseEntity.badRequest().body("No refresh token provided.");
+        }
+
+        // 1) DB에서 해당 리프레시 토큰이 유효한지 확인
+        User user = userService.getUserByRefreshToken(refreshToken);
+        if (user == null) {
+            return ResponseEntity.status(401).body("Invalid refresh token. Please log in again.");
+        }
+
+        // 2) 카카오 API를 이용해 새로운 액세스 토큰 요청
+        String newAccessToken = userService.refreshKakaoAccessToken(refreshToken);
+        if (newAccessToken == null) {
+            return ResponseEntity.status(401).body("Refresh token expired. Please log in again.");
+        }
+
+        return ResponseEntity.ok(Map.of("access_token", newAccessToken));
+    }
+
+    // ✅ 카카오 OAuth 토큰 요청
+    private Map<String, String> getKakaoAccessToken(String code) {
         try {
-            HttpHeaders headers = new HttpHeaders(); //http 요청 준비
+            HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-            MultiValueMap<String, String> params = new LinkedMultiValueMap<>(); //필수 파라미터 설정(null값 X)
+            MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
             params.add("grant_type", "authorization_code");
             params.add("client_id", kakaoRestApiKey);
             params.add("redirect_uri", kakaoRedirectUri);
             params.add("code", code);
 
             HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(params, headers);
-            ResponseEntity<Map> response = restTemplate.postForEntity(KAKAO_TOKEN_URL, requestEntity, Map.class); //post 요청 전송
+            ResponseEntity<Map> response = restTemplate.postForEntity(KAKAO_TOKEN_URL, requestEntity, Map.class);
 
             if (response.getStatusCode().is2xxSuccessful()) {
-                Map<String, Object> body = response.getBody();
-                return (String) body.get("access_token");
-            } else {
-                return null;
+                return (Map<String, String>) response.getBody();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return new HashMap<>();
     }
 
+    // ✅ 카카오 사용자 정보 요청
     private Map<String, Object> getKakaoUserInfo(String accessToken) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(accessToken);
             HttpEntity<?> entity = new HttpEntity<>(headers);
-            //api get으로 요청
             ResponseEntity<Map> response = restTemplate.exchange(KAKAO_USERINFO_URL, HttpMethod.GET, entity, Map.class);
 
-            if (response.getStatusCode().is2xxSuccessful()) { //토큰 맞으면 사용자 정보 추출해서 반환
+            if (response.getStatusCode().is2xxSuccessful()) {
                 return response.getBody();
-            } else {
-                return null;
             }
-        } catch (HttpClientErrorException e) { //예외 처리 부분
+        } catch (HttpClientErrorException e) {
             return null;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }

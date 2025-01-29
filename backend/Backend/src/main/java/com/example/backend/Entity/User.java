@@ -49,7 +49,18 @@ public class User {
     private String provider;
 
 
-    // === Getters / Setters ===
+    @Column(length = 500)
+    private String refreshToken; // 리프레시 토큰 저장
+
+    // Getter, Setter
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
     public Long getUserId() {
         return userId;
     }
