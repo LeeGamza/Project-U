@@ -8,6 +8,35 @@ import { signIn, signOut, useSession } from "next-auth/react";
 export default function Login() {
   const { data: session, status } = useSession();
 
+  const handleLogin = async (provider) => {
+    try {
+      const result = await signIn(provider);
+
+      if (result && result.ok) {
+        const token = session?.user?.accessToken;
+
+        if (token) {
+          const response = await fetch("/api/send-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ token }),
+          });
+
+          if (response.ok) {
+            console.log("토큰 전송 성공:", await response.json());
+          } else {
+            console.error("토큰 전송 실패:", response.status);
+          }
+        }
+      }
+    } catch (error) {
+      console.error("로그인 중 오류 발생:", error);
+    }
+  };
+
   return (
     <div className={styles.background}>
       <button className={styles.goHomeButton}>
@@ -34,14 +63,14 @@ export default function Login() {
             <div className={styles.loginText}>TRIPSTORY에 로그인 하기</div>
             <button
               className={styles.kakaoLoginButton}
-              onClick={() => signIn("kakao")}
+              onClick={() => handleLogin("kakao")}
             >
               <Image src="/KakaoLogo.png" alt="kakao" width={48} height={48} />
               카카오 계정으로 계속하기
             </button>
             <button
               className={styles.googleLoginButton}
-              onClick={() => signIn("google")}
+              onClick={() => handleLogin("google")}
             >
               <Image
                 src="/GoogleLogo.png"

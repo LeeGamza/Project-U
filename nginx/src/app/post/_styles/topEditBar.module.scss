@@ -1,0 +1,81 @@
+.textEditButtonBar {
+  display: flex;
+  background-color: white;
+  border: solid black 1px;
+  padding: 20px;
+  gap: 20px;
+}
+
+.backArrow {
+  font-size: 20px;
+}
+
+.backButton {
+  background-color: #ffd700;
+  border: solid gray 1px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 170px;
+  height: 50px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+.tripButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: solid gray 1px;
+  border-radius: 20px;
+  width: 170px;
+  height: 50px;
+  font-size: 20px;
+  gap: 10px;
+}
+
+.googleMaps {
+  width: 30px;
+  height: 30px;
+}
+
+.FiSearch {
+  width: 30px;
+  height: 30px;
+}
+
+.editButtonContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: 210px;
+  gap: 20px;
+}
+
+.imageButton {
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 50px;
+  font-size: 20px;
+  gap: 10px;
+  border-radius: 20px;
+  border: none;
+}
+
+.FiImage {
+  width: 30px;
+  height: 30px;
+}
+
+.uploadContainer {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
