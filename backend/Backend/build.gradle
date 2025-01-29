@@ -58,3 +58,9 @@ tasks.named('test') {
 tasks.withType(JavaCompile).configureEach {
 	options.compilerArgs << "-Xlint:deprecation"
 }
+
+test {
+	environment "GOOGLE_CLIENT_ID", "test-client-id"
+	environment "GOOGLE_CLIENT_SECRET", "test-client-secret"
+	environment "KAKAO_REST_API_KEY", "test-kakao-key"
+}
