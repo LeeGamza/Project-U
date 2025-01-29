@@ -1,0 +1,386 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  background-color: #b8e2f2;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 5px;
+  font-size: 36px;
+}
+
+.createPostButton {
+  margin-left: 730px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ffcb00;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.bellicon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.chaticon {
+  margin-left: 10px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.profileIcon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 40px;
+}
+
+.username {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.dropdownIcon {
+  padding: 8px 12px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.profileImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.bellBox {
+  position: absolute;
+  top: 87px;
+  right: 40px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.messageBox {
+  position: absolute;
+  top: 87px;
+  right: 40px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: calc(100vh - 80px);
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.leftContainer,
+.centerContainer,
+.rightContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.leftContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.leftBoxLarge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc((380 / 1920) * 100vw);
+  height: calc((255 / 1080) * 100vh);
+  background-color: #f9fff1;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.largeBoxIcon {
+  width: 80px;
+  height: 80px;
+  background-color: #e8e3ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #6a4fbf;
+  margin-bottom: 10px;
+}
+
+.largeBoxText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.leftBoxSmall {
+  width: 220px;
+  height: 45px;
+  background-color: #D9D9D9;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.centerText {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.centerImage {
+  width: 773px;
+  height: 759px;
+  object-fit: contain;
+}
+
+.smallBoxes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: visible;
+  margin-top: 50px;
+  border: 1px solid #888;
+  border-radius: 8px;
+}
+
+.smallBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: calc((474 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #ccc;
+  border: 1px solid #888;
+}
+
+.boxLabel {
+  position: absolute;
+  bottom: calc(100% + 0.5vh);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: calc((16 / 1920) * 100vw);
+  text-align: center;
+  font-weight: bold;
+}
+
+.smallBox1 {
+  width: calc((34 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #D9D9D9;
+}
+
+.smallBox2 {
+  width: calc((145 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #FE9691;
+}
+
+.smallBox3 {
+  width: calc((145 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #A7DBE8;
+}
+
+.smallBox4 {
+  width: calc((145 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #A0D468;
+}
+
+.smallBox5 {
+  width: calc((34 / 1920) * 100vw);
+  height: calc((16 / 1080) * 100vh);
+  background-color: #FFD700;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+
+.rightTextLarge {
+  font-size: calc((60 / 1920) * 100vw);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #000000;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.rightTextSmall {
+  font-size: calc((32 / 1920) * 100vw);
+  font-weight: normal;
+  margin-bottom: 20px;
+  color: #000000;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.rightBox {
+  width: calc((433 / 1920) * 100vw);
+  height: calc((397 / 1080) * 100vh);
+  background-color: #f9fff1;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rightBoxTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.rightBoxDivider {
+  width: 90%;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 15px;
+}
+
+.rightBoxList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rightBoxItem {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.rightBoxIcon {
+  flex-shrink: 0;
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.rightBoxText {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchContainer {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .createPostButton {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+}
