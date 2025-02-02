@@ -1,0 +1,65 @@
+.postContentContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 10px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.date {
+  color: #bfbfbf;
+}
+
+.icons {
+  width: 30px;
+  height: 30px;
+}
+
+.bookmark {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 50px;
+}
+
+.swiper {
+  max-width: 800px; /* ✅ 최대 너비 설정 */
+  width: 100%;
+  align-self: flex-start; /* ✅ Swiper가 부모 컨테이너 안에서 왼쪽 정렬되도록 설정 */
+  //   border: 1px solid black;
+  border-radius: 20px;
+}
+
+.swiperSlide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileContainer {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.nickname {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.profile {
+  border-radius: 30px;
+}
