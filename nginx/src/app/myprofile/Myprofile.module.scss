@@ -1,0 +1,489 @@
+
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background-color: #b8e2f2;
+  width: 100%;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 5px;
+  font-size: 30px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 600px;
+}
+
+.searchInput {
+  padding: 12px 300px 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 16px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+.createPostButton {
+  margin-left: 35px;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #ffcb00;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.bellicon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+.chaticon {
+  margin-left: 8px;
+  margin-bottom: 2px;
+  padding: 8px 12px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.profileIcon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 40px;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 1px;
+}
+
+.dropdownIcon {
+
+  padding: 8px 12px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1200px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+
+  .rightColumn {
+    margin-top: 20px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .searchContainer {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .createPostButton {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+
+  .cardImage {
+    height: 150px;
+  }
+
+  .rightColumn {
+    display: none;
+  }
+}
+
+//----------------------
+
+.notificationItem {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 좌우 정렬 */
+  padding: 10px; /* 적절한 여백 */
+  border-bottom: 1px solid #777777; /* 구분선 */
+}
+
+.profileImage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover; /* 이미지 비율 유지 */
+  margin-right: 10px; /* 글과 여백 추가 */
+}
+.postImage {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  margin-left: 10px; /* 글과 여백 추가 */
+}
+
+.notificationText {
+  flex: 1; /* 남은 공간 채우기 */
+  text-align: left; /* 글 왼쪽 정렬 */
+  font-size: 13px;
+}
+
+.lines{
+  border: #555555 solid 0.5px;
+  margin-bottom: 1px;
+}
+//----------------------
+.bellBox {
+  position: absolute;
+  top: 87px; /* 벨 아이콘 아래로 위치 */
+  right: 100px; /* 벨 아이콘 기준으로 정렬 */
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.bellList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bellList li {
+  padding: 8px;
+  font-size: 12px;
+}
+//---------------------
+.messageBox {
+  position: absolute;
+  top: 87px;
+  right: 100px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 스크롤 활성화 */
+  z-index: 1000;
+}
+
+.messageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.messageItem {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 좌우 정렬 */
+  padding: 10px; /* 적절한 여백 */
+  border-bottom: 1px solid #777777; /* 구분선 */
+}
+
+.profileImage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  object-fit: cover; /* 이미지 비율 유지 */
+  margin-right: 10px; /* 텍스트와 간격 추가 */
+}
+
+.messageText {
+  flex-grow: 1; /* 남은 공간 채우기 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  font-size: 13px;
+}
+//------------------------
+
+.dropdownMenu {
+  position: absolute;
+  top: 87px; /* 아이콘 위치 기준 조정 */
+  right: 80px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 140px;
+  height: 96px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
+//--------------------------------------------------------------------
+
+.upsection{
+  margin-top: 45px;
+  display: flex;
+  width: 65%;
+  height: 40vh;
+  margin-left: 200px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFE0; // 배경색 추가
+  border-radius: 18px;
+  padding: 0px 40px; // 내부 여백 추가
+  box-shadow : 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.Leftsection{
+  text-align : center;
+  flex: 1;     // 비율 조정 (5:5)
+  padding-Right: 20px;
+}
+
+.sectionprofileimg{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.sectionbutton{
+  background-color: #F5F5F5;
+  border: none;
+  border-radius: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.sectionusername{
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.sectionservice{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sectionserviceimg{
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+
+.middleline{
+  width: 2px;
+  background-color: #E0E0E0;
+  height: 100%;
+}
+
+.Rightsection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; // 비율 조정
+  padding-left: 20px;
+}
+
+.rightimgsection{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+}
+
+.rightimg{
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rightpostset{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  margin-top: -10px;
+}
+
+.rightpostname {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333333;
+}
+.rightstarpoint{
+  font-size: 12px;
+  color: #333333;
+}
+
+//------------------------------------------------------------------------------------------------
+
+.sharetitle{
+  margin-left: 180px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.gotomymap{
+  margin-left: 780px;
+  background-color: #d9d9d9;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 200px;
+  height: 35px;
+  border: none;
+  font-size: 18px;
+  padding: 1px;
+}
+
+.downsection{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // 기본 4개의 열로 고정
+  row-gap: 40px;
+  column-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.cardslot{
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+}
+
+.cardimg{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cardinformation{
+  padding: 5px;
+  position: relative;
+}
+
+.cardtitle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posttitle{
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap; // 텍스트 줄바꿈 방지
+  overflow: hidden; // 텍스트 넘침 처리
+  text-overflow: ellipsis; // 말줄임표 처리
+}
+
+.cardstarpoint{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.carduserinfo{
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  gap: 8px;
+}
+
+.carduserimg{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ddd;
+}
+
+.cardusername{
+  font-size: 14px;
+  color: #555;
+}
+
+.carddate{
+  position: absolute;
+  bottom: -1px;
+  right: 10px;
+  font-size: 12px;
+}

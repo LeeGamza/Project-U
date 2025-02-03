@@ -5,8 +5,8 @@ import { PiBellRinging } from "react-icons/pi";
 import { LuMessageCircle } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
 import { IoChevronDown } from "react-icons/io5";
-import styles from "./MainPage.module.scss";
 
+import styles from "./Myprofile.module.scss"
 
 const Home: React.FC = () => {
 
@@ -161,47 +161,75 @@ const Home: React.FC = () => {
         },
     ];
 
+    //----------------------------------------------------------------------------------------------------
+    // 임시데이터 (인기 게시물 카드슬롯)
+
+    const userData = {
+        profileImage: "profile4.jpg",
+        userName: "user_1",
+        linkedAccount: "kakao", // "google"로 변경 가능
+    };
+
+    const popularPost = {
+        image: "post1.jpg",
+    };
+
+    const postData = {
+        title: "서울 집값 떡상",
+        starPoints: "5.2K⭐",
+    };
+
+    //-----------------------------------------------------------------------------------------------------
+    // 임시데이터 (공유한 추억들)
+    const posts = [
+        {
+            title: "서울 집값 떡상",
+            imageUrl: "post1.jpg",
+            starPoints: "5.2K", // 별점 정보
+            date: "2025년 1월 21일 18:32", // 작성일
+        },
+        {
+            title: "부산 야경 직입니다.",
+            imageUrl: "post2.jpg",
+            starPoints: "3.1K",
+            date: "2024년 11월 18일 21:15",
+        },
+        {
+            title: "대구는 해가 질 때도 덥다",
+            imageUrl: "post4.jpg",
+            starPoints: "2.2K",
+            date: "2024년 8월 18일 14:00",
+        },
+        {
+            title: "부산 야경 맛집 모르면 나가라.",
+            imageUrl: "post2.jpg",
+            starPoints: "1.1K",
+            date: "2024년 5월 13일 09:45",
+        },
+        {
+            title: "제주도 보소..",
+            imageUrl: "post1.jpg",
+            starPoints: "4.8K",
+            date: "2023년 10월 10일 12:00",
+        },
+        {
+            title: "대구 날씨 이게 맞냐?",
+            imageUrl: "post4.jpg",
+            starPoints: "5.1K",
+            date: "2023년 8월 12일 14:00",
+        },
+        {
+            title: "겨울 설원의 평화.",
+            imageUrl: "post3.jpg",
+            starPoints: "3.7K",
+            date: "2023년 7월 25일 07:30",
+        },
+    ];
 
 
 
 //-----------------------------------------------------------------------------------------------
     const [user, setUser] = useState({ username: "user_1" });
-    const [trips, setTrips] = useState([
-        {
-            id: 1,
-            image: "post1.jpg", // 나중에 이미지 URL로 대체
-            title: "서울에서 사기당한 썰 푼다.",
-            likes: 1233,
-            username: "user_101",
-        },
-        {
-            id: 2,
-            image: "post2.jpg",
-            title: "부산에서 돈 뺏긴 썰 푼다.",
-            likes: 2944,
-            username: "user_102",
-        },
-        {
-            id: 3,
-            image: "post3.jpg",
-            title: "실시간 강원도 출근길 ㅈ된거냐?",
-            likes: 412,
-            username: "user_103",
-        },
-        {
-            id: 4,
-            image: "post4.jpg",
-            title: "대구가 사람 사는 곳이 맞냐?",
-            likes: 1987,
-            username: "user_104",
-        },
-    ]);
-    const [hallOfFame, setHallOfFame] = useState([
-        "user_1",
-        "user_10asdas2",
-        "I'm_girl",
-        "user_132",
-    ]);
 
     //-----------------------------------------------------------------------------------------------
 
@@ -221,7 +249,7 @@ const Home: React.FC = () => {
                             placeholder="도시 검색"
                             className={styles.searchInput}
                         />
-                        <IoIosSearch className={styles.searchIcon} />
+                        <IoIosSearch className={styles.searchIcon}/>
                     </div>
 
                     <button className={styles.createPostButton}>
@@ -232,7 +260,7 @@ const Home: React.FC = () => {
                     <PiBellRinging className={styles.bellicon} onClick={toggleBellBox}/>
 
                     {/* 메시지 버튼 */}
-                    <LuMessageCircle className={styles.chaticon} onClick={toggleMessageBox} />
+                    <LuMessageCircle className={styles.chaticon} onClick={toggleMessageBox}/>
 
                     {/* 프로필아이콘, 사용자 이름 */}
                     <div className={styles.profileIcon}>
@@ -245,7 +273,7 @@ const Home: React.FC = () => {
                     <p className={styles.username}>{user.username}</p>
 
                     {/* 드롭아웃 토글 이벤트*/}
-                    <IoChevronDown className={styles.dropdownIcon} onClick={toggleDropdown} />
+                    <IoChevronDown className={styles.dropdownIcon} onClick={toggleDropdown}/>
                     {isDropdownOpen && (
                         <div className={styles.dropdownMenu}>
                             <p className={styles.dropdownItem}>My 프로필</p> {/*마이 페이지 포트 설정*/}
@@ -292,7 +320,7 @@ const Home: React.FC = () => {
             {isMessageOpen && (
                 <div className={styles.messageBox}>
                     <h3>&ensp;Trip Talk</h3>
-                    <hr className={styles.lines} />
+                    <hr className={styles.lines}/>
                     <ul className={styles.messageList}>
                         {temporarymessageData.map((message, index) => (
                             <li key={index} className={styles.messageItem}>
@@ -305,61 +333,93 @@ const Home: React.FC = () => {
                                 <span className={styles.messageText}>
                         <strong>{message.username}</strong>: {message.content}
                     </span>
-                                <hr className={styles.lines} />
+                                <hr className={styles.lines}/>
                             </li>
                         ))}
                     </ul>
                 </div>
             )}
 
-
-            {/* Main Content */}
-            <div className={styles.mainContent}>
-                {/* Left Column */}
-                <div className={styles.leftColumn}>
-                    <h2 className={styles.sectionTitle}>Today&apos;s Trip</h2>
-                    <div className={styles.gridContainer}>
-                        {trips.map((trip) => (
-                            <div
-                                key={trip.id}
-                                className={styles.card}
-                                onClick={() => window.location.href = `/post/${trip.id}`} // 클릭 후 다른 게시물로 연결 포트
-                                style={{cursor: "pointer"}} // 마우스 커서를 포인터로 변경
-                            >
-                                <img src={trip.image} alt={trip.title} className={styles.cardImage}/>
-                                <div className={styles.cardContent}>
-                                    <div className={styles.cardHeader}>
-                                        <p className={styles.cardTitle}>{trip.title}</p>
-                                        <div className={styles.cardDetails}>
-                                            <span className={styles.cardRating}>⭐ {trip.likes}k</span>
-                                            <span className={styles.cardUser}>{trip.username}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+            {/*-----------------------------------------메인 콘텐츠 ------------------------------------------------------*/}
+            {/* 인기 게시물 */}
+            <section className={styles.upsection}>
+                {/* 왼쪽 프로필 섹션 */}
+                <div className={styles.Leftsection}>
+                    <img className={styles.sectionprofileimg}
+                         src={userData.profileImage}
+                         alt="프로필 사진"/><br/>
+                    <button className={styles.sectionbutton}>
+                        프로필 사진 변경하기
+                    </button>
+                    <p className={styles.sectionusername}>
+                        {userData.userName}</p>
+                    <p>연동된 계정</p>
+                    <div className={styles.sectionservice}>
+                        <img className={styles.sectionserviceimg}
+                             src={`/${userData.linkedAccount}.png`}
+                             alt={`${userData.linkedAccount} 연동`}/>
+                        {/* 또는 */}
+                        {/*<img src="/google-icon.png" alt="구글 연동" style={{width: "30px", height: "30px"}}>*/}
                     </div>
-
                 </div>
 
-                {/* Right Column */}
-                <div className={styles.rightColumn}>
-                    <h2 className={styles.hallOfFameTitle}>👑 명예의전당 👑</h2>
-                    <hr className={styles.divider}/>
-                    <p className={styles.hallOfFameSubtitle}>⭐스타 포인트 순위⭐</p>
-                    <p className={styles.topUser}>가장 많은 포인트를 받은 유저</p>
-                    <ul className={styles.hallOfFameList}>
-                        {hallOfFame.map((user, index) => (
-                            <li key={index} className={styles.hallOfFameItem}>
-                                {index + 1 === 1 && "🥇"}
-                                {index + 1 === 2 && "🥈"}
-                                {index + 1 === 3 && "🥉"}
-                                {index + 1 > 3 && "🏅"} {user}
-                            </li>
-                        ))}
-                    </ul>
+                {/* 중간 구분선 */}
+                <div className={styles.middleline}></div>
+                <div className={styles.Rightsection}>
+                    {/* 가장 인기 있는 게시물 */}
+                    <h3>내 프로필 중 가장 인기 있는 게시물</h3>
+                    <div className={styles.rightimgsection}>
+                        <img className={styles.rightimg}
+                             src={popularPost.image}/>
+                    </div>
+                    <div className={styles.rightpostset}>
+                        {/* 게시물 이름 */}
+                        <span className={styles.rightpostname}>{postData.title}</span>
+                        {/* 스타포인트 */}
+                        <span className={styles.rightstarpoint}>{postData.starPoints}</span>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            {/*----------------------------------------------------------------------------------------------------------------------------*/}
+
+            {/* 공유한 추억들 */}
+            <section style={{marginTop: "30px"}}>
+                <p className={styles.sharetitle}>
+                    내가 공유한 추억들
+                    <button className={styles.gotomymap}>나만의 지도 보러가기</button></p>
+
+                <div className={styles.downsection}>
+                    {posts.slice(0, 10).map((post, index) => (
+                        <div className={styles.cardslot} key={index}>
+                            {/* 게시물 이미지 */}
+                            <img className={styles.cardimg} src={post.imageUrl} alt={post.title}/>
+
+                            {/* 게시물 텍스트와 정보 */}
+                            <div className={styles.cardinformation}>
+
+                                {/* 제목과 스타 포인트 */}
+                                <div className={styles.cardtitle}>
+                                    <p className={styles.posttitle}> {post.title}</p>
+                                    <div className={styles.cardstarpoint}><span>{post.starPoints}⭐</span></div>
+                                </div>
+
+                                {/* 작성자 정보 개인 프로필이기 때문에 무조건 유저 정보와 사진이 고정으로 존재해야함 */}
+                                <div className={styles.carduserinfo}>
+                                    <img className={styles.carduserimg}
+                                        src="profile4.jpg"
+                                        alt="User Profile"/>
+                                    <span className={styles.cardusername}>user_1</span></div>
+
+                                {/* 작성일 */}
+                                <p className={styles.carddate}>작성일:{post.date}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+
         </div>
     );
 };
