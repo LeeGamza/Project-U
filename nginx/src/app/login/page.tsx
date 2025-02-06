@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./_styles/page.module.scss";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { signIn, signOut, useSession } from "next-auth/react";
+import axios from "axios";
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -42,23 +43,18 @@ export default function Login() {
   // 백엔드로 토큰 전송 함수
   const sendTokenToBackend = async (accessToken) => {
     try {
-      const response = await fetch("/api/token", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+      const response = await axios.post(
+        "http://localhost:8080/api/token",
+        {
+          accessToken: accessToken,
         },
-        body: JSON.stringify({ accessToken: accessToken }),
-      });
-
-      console.log({
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({ accessToken: accessToken }),
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
       if (response.ok) {
         console.log("토큰 전송 성공:", await response.json());
