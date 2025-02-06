@@ -5,7 +5,14 @@ import Post from "./_component/post";
 import Comment from "./_component/comment";
 
 function getPost(id: string) {
-  const mockPosts = {
+  const mockPosts: {
+    [key: string]: {
+      id: string;
+      title: string;
+      content: string;
+      images: string[];
+    };
+  } = {
     "1": {
       id: "1",
       title: "첫 번째 글",
@@ -21,7 +28,7 @@ function getPost(id: string) {
     },
   };
 
-  return mockPosts[id] || null;
+  return mockPosts[id] || null; // 함수 파라미터로 받은 id를 사용
 }
 
 const mockComments = [

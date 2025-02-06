@@ -2,43 +2,46 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
+  max-width: 800px; // ✅ 최대 너비 확대
+  width: 100%;
 }
 
 .dateContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  align-items: center;
   margin: 10px;
 }
 
 .title {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
 }
 
 .date {
   color: #bfbfbf;
+  font-size: 18px;
 }
 
 .icons {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 .bookmark {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  gap: 50px;
+  align-items: center;
+  gap: 30px; // ✅ 간격 조정
 }
 
 .swiper {
-  max-width: 800px; /* ✅ 최대 너비 설정 */
+  max-width: 800px;
   width: 100%;
-  align-self: flex-start; /* ✅ Swiper가 부모 컨테이너 안에서 왼쪽 정렬되도록 설정 */
-  //   border: 1px solid black;
+  align-self: flex-start;
   border-radius: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .swiperSlide {
@@ -47,19 +50,104 @@
   align-items: center;
 }
 
+/* ✅ 프로필 컨테이너 */
 .profileContainer {
   padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .nickname {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 }
 
 .profile {
-  border-radius: 30px;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+}
+
+/* ✅ 1440x960 해상도 조정 */
+@media (max-width: 1440px) {
+  .postContentContainer {
+    max-width: 700px;
+    max-height: 550px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .swiper {
+    max-width: 850px;
+  }
+
+  .bookmark {
+    gap: 20px;
+  }
+
+  .profile {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* ✅ 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .swiper {
+    max-width: 90%;
+  }
+}
+
+/* ✅ 모바일 (768px 이하) */
+@media (max-width: 768px) {
+  .postContentContainer {
+    margin: 10px;
+    width: 95%;
+  }
+
+  .title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .dateContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .date {
+    font-size: 14px;
+  }
+
+  .bookmark {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .swiper {
+    max-width: 100%;
+  }
+
+  .profileContainer {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .nickname {
+    font-size: 18px;
+  }
+
+  .profile {
+    width: 40px;
+    height: 40px;
+  }
 }

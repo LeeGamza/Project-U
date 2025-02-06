@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./_styles/page.module.scss";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -7,33 +8,65 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Login() {
   const { data: session, status } = useSession();
+  const [token, setToken] = useState(null);
 
+  // 세션이 변경될 때 토큰 업데이트
+  useEffect(() => {
+    if (session) {
+      console.log("세션 업데이트 감지됨:", session);
+      setToken(session.accessToken); // 최신 토큰 저장
+    }
+  }, [session]);
+
+  // 로그인 처리 함수
   const handleLogin = async (provider) => {
     try {
-      const result = await signIn(provider);
+      console.log("로그인 시도 중 - provider:", provider);
 
-      if (result && result.ok) {
-        const token = session?.user?.accessToken;
+      await signIn(provider, { redirect: false });
 
-        if (token) {
-          const response = await fetch("/api/send-token", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ token }),
-          });
-
-          if (response.ok) {
-            console.log("토큰 전송 성공:", await response.json());
-          } else {
-            console.error("토큰 전송 실패:", response.status);
-          }
-        }
-      }
+      console.log("로그인 요청 후, 세션 확인 대기...");
     } catch (error) {
       console.error("로그인 중 오류 발생:", error);
+    }
+  };
+
+  // 토큰이 업데이트되면 백엔드로 전송
+  useEffect(() => {
+    if (token) {
+      console.log("업데이트된 토큰:", token);
+      sendTokenToBackend(token);
+    }
+  }, [token]);
+
+  // 백엔드로 토큰 전송 함수
+  const sendTokenToBackend = async (accessToken) => {
+    try {
+      const response = await fetch("/api/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ accessToken: accessToken }),
+      });
+
+      console.log({
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ accessToken: accessToken }),
+      });
+
+      if (response.ok) {
+        console.log("토큰 전송 성공:", await response.json());
+      } else {
+        console.error("토큰 전송 실패:", response.status);
+      }
+    } catch (error) {
+      console.error("토큰 전송 중 오류 발생:", error);
     }
   };
 
