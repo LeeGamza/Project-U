@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+//import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.time.LocalDateTime;
@@ -54,8 +54,10 @@ public class UserService {
         System.out.println("Google Client Secret: " + googleClientSecret);
     }
 
+
+
     // ✅ 카카오 로그인 - 유저 찾기 또는 생성 (리프레시 토큰 저장 추가)
-    public User findOrCreateUserByKakao(String kakaoId, String email, String nickname, String refreshToken) {
+    public User findOrCreateUserByKakao(String kakaoId, String email, String nickname, String refreshToken, Map<String, Object> kakaoUserInfo) {
         Optional<User> existingUser = Optional.ofNullable(userRepository.findByKakaoId(kakaoId));
 
         if (existingUser.isPresent()) {
@@ -67,7 +69,24 @@ public class UserService {
                 userRepository.save(user);
             }
             return user;
+
         }
+        // 🔹 이메일 필수 처리 (임시 이메일 생성 가능)
+        if (email == null || email.isEmpty()) {
+            Map<String, Object> accountMap = (Map<String, Object>) kakaoUserInfo.get("kakao_account");
+
+            if (accountMap != null && accountMap.containsKey("email_needs_agreement")) {
+                boolean emailNeedsAgreement = (boolean) accountMap.get("email_needs_agreement");
+                if (emailNeedsAgreement) {
+                    throw new IllegalArgumentException("사용자가 이메일 제공에 동의하지 않았습니다. 카카오 로그인 페이지에서 이메일 제공 동의를 해주세요.");
+                }
+            }
+
+            // ✅ 이메일이 없을 경우 임시 이메일 생성
+            email = "kakao_" + kakaoId + "@kakao.com";
+            System.out.println("이메일이 없어서 임시 이메일 생성: " + email);
+        }
+
 
         // 🔹 신규 유저 생성 (리프레시 토큰 포함)
         User newUser = new User();
@@ -75,6 +94,7 @@ public class UserService {
         newUser.setEmail(email);
         newUser.setNickname(nickname);
         newUser.setRefreshToken(refreshToken);
+        newUser.setPassword("");
         userRepository.save(newUser);
 
         return newUser;

@@ -1,6 +1,10 @@
 package com.example.backend.Entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.aspectj.bridge.IMessage;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,6 +12,7 @@ import java.time.LocalDateTime;
 public class User {
 
     //테이블 수정 예정이라 바뀔 예정
+
     // === PK (Primary Key) ===
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
@@ -18,31 +23,33 @@ public class User {
     @Column(name = "kakao_id")
     private String kakaoId;
 
-    @Column(name = "email", nullable = false, length = 40)
+    @Column(name = "email", nullable = false, unique = true, length = 40)
+
     private String email;
 
-    @Column(name = "password", nullable = false, length = 40)
+    @Column(name = "password",nullable = false, length = 40)
     private String password;
 
-    @Column(name = "nickname", nullable = false, length = 20)
+    @Column(name = "nickname", length = 20)
     private String nickname;
 
     @Column(name = "profile_image")
     private String profileImage;
 
-    @Column(name = "created_at", nullable = false)
+    @CreationTimestamp // 자동으로 현재 시간을 저장
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "record_user_id", nullable = false)
+    @Column(name = "record_user_id")
     private int recordUserId;
 
     @Column(name = "visited_location_user_id")
     private int visitedLocationUserId;
 
-    @Column(name = "like_user_id", nullable = false)
+    @Column(name = "like_user_id")
     private int likeUserId;
 
-    @Column(name = "searchlog_user_id", nullable = false)
+    @Column(name = "searchlog_user_id")
     private int searchlogUserId;
 
     @Column(name = "provider")

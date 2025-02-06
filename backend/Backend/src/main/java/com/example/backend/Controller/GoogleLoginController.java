@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api/auth/google")
 public class GoogleLoginController {
@@ -21,6 +22,10 @@ public class GoogleLoginController {
     public GoogleLoginController(UserService userService, OAuth2AuthorizedClientService authorizedClientService) {
         this.userService = userService;
         this.authorizedClientService = authorizedClientService;
+    }
+    @RequestMapping(method = RequestMethod.OPTIONS)
+    public ResponseEntity<?> handleOptions() {
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/login/success")

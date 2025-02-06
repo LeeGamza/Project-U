@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api/token")
 public class TokenController {
@@ -23,7 +24,7 @@ public class TokenController {
             @RequestHeader(value = "Refresh-Token", required = false) String refreshToken) {
 
         // 1) Authorization 헤더에서 "Bearer " 뒷부분만 추출
-        String accessToken = null;
+        String accessToken = authorizationHeader;
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             accessToken = authorizationHeader.substring(7);
         }
@@ -53,5 +54,9 @@ public class TokenController {
         return ResponseEntity.ok()
                 .header("Authorization", "Bearer " + newAccessToken)
                 .body("Access token refreshed successfully.");
+    }
+    @RequestMapping(method = RequestMethod.OPTIONS)
+    public ResponseEntity<?> handleOptions() {
+        return ResponseEntity.ok().build();
     }
 }

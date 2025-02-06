@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/KakaoLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/KakaoLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/TokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +34,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "kakaologin__debug",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/sp079/Desktop/Project-U",
     "node.js.detected.package.eslint": "true",

@@ -1,0 +1,18 @@
+#version: '3.8'
+#services:
+#  mysql:
+#    image: mysql:8.0  # MySQL 8.0 버전 사용 (필요하면 다른 버전으로 변경 가능)
+#    container_name: project_u_mysql  # 컨테이너 이름 지정
+#    restart: always  # 컨테이너가 중단되면 자동 재시작
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: Project_U
+#      MYSQL_USER: project_u
+#      MYSQL_PASSWORD: 0000
+#    ports:
+#      - "3306:3306"  # MySQL 기본 포트
+#    volumes:
+#      - mysql_data:/var/lib/mysql  # MySQL 데이터 영구 저장
+#
+#volumes:
+#  mysql_data:
