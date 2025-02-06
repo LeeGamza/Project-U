@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { postState, commentsState } from "@/recoil/atoms";
 import { fetchPost, fetchComments } from "@/lib/api";
 import { useEffect } from "react";
+import Topbar from "../global/topbar";
 
 // function getPost(id: string) {
 //   const mockPosts: {
@@ -96,6 +97,7 @@ export default function PostDetail({ params }: { params: { id: string } }) {
 
   return (
     <div className={styles.background}>
+      {/* <Topbar /> */}
       <div className={styles.postDetailContainer}>
         <Post post={post} />
         <div className={styles.line}></div>

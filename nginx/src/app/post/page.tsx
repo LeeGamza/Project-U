@@ -1,11 +1,12 @@
 import styles from "./_styles/page.module.scss";
 import TopEditBar from "./_component/topEditBar";
 import { FiSearch } from "react-icons/fi";
+import Topbar from "../global/topbar";
 
 export default function Post() {
   return (
     <div className={styles.background}>
-      {/* <Topbar /> */}
+      <Topbar />
       <TopEditBar />
       <div className={styles.postContainer}>
         <div className={styles.searchContainer}>

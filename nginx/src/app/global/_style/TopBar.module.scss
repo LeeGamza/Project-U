@@ -1,0 +1,138 @@
+.container {
+  width: 100%;
+  //   min-height: 100vh;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #b8e2f2;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  margin-right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 5px;
+  font-size: 36px;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 600px;
+}
+
+.searchInput {
+  padding: 12px 300px 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 16px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
+.createPostButton {
+  margin-left: 250px;
+  padding: 12px 24px;
+  font-size: 18px;
+  background-color: #ffcb00;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.bellicon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.chaticon {
+  margin-left: 10px;
+  padding: 8px 12px;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.profileIcon {
+  margin-left: 20px;
+  padding: 8px 12px;
+  font-size: 40px;
+}
+
+.username {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.dropdownIcon {
+  padding: 8px 12px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.profileImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.bellBox {
+  position: absolute;
+  top: 87px;
+  right: 40px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.messageBox {
+  position: absolute;
+  top: 87px;
+  right: 40px;
+  width: 400px;
+  height: 600px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 1000;
+}
