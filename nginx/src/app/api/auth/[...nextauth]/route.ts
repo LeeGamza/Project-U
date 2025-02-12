@@ -11,20 +11,29 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      authorization: {
+        params: {
+          scope: "openid profile email",
+        },
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, account }) {
-      if (account?.access_token) {
+      // 처음 로그인할 때 Google access token을 token에 저장
+      if (account && account.provider === 'google') {
+        console.log("Google account object:", account);
+        token.accessToken = account.access_token;
+      }
+      else if(account && account.provider === 'kakao'){
         token.accessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token.accessToken) {
-        session.accessToken = token.accessToken;
-      }
+      // 세션에 Google access token을 노출
+      session.accessToken = token.accessToken;
       return session;
     },
   },

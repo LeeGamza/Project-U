@@ -17,46 +17,28 @@ import java.util.Map;
 public class GoogleLoginController {
 
     private final UserService userService;
-    private final OAuth2AuthorizedClientService authorizedClientService;
 
     public GoogleLoginController(UserService userService, OAuth2AuthorizedClientService authorizedClientService) {
         this.userService = userService;
-        this.authorizedClientService = authorizedClientService;
-    }
-    @RequestMapping(method = RequestMethod.OPTIONS)
-    public ResponseEntity<?> handleOptions() {
-        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/login/success")
-    public ResponseEntity<?> googleLoginSuccess(@AuthenticationPrincipal OAuth2User oAuth2User) {
-        System.out.println("Google login callback received");
+    @PostMapping("/token")
+    public ResponseEntity<?> googleLoginCallback(@RequestBody Map<String, String> request) {
+        // 요청 본문에서 "accessToken" 키를 사용
+        String token = request.get("accessToken");
+        System.out.println("🔍 받은 accessToken: " + token);
 
-        if (oAuth2User == null) {
-            System.out.println("Unauthorized access attempt.");
-            return ResponseEntity.status(401).body("Unauthorized");
+        if (token == null || token.isEmpty()) {
+            return ResponseEntity.badRequest().body("Access token is missing");
         }
 
-        // 유저 정보 추출
-        String email = oAuth2User.getAttribute("email");
-        String name = oAuth2User.getAttribute("name");
-        System.out.println("Authenticated user email: " + email);
 
-        // OAuth2AuthorizedClient에서 리프레시 토큰 가져오기 (Principal의 Name을 사용)
-        OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient("google", oAuth2User.getName());
-        String refreshToken = (client != null && client.getRefreshToken() != null) ? client.getRefreshToken().getTokenValue() : null;
-
-        // 사용자 정보 저장 (리프레시 토큰이 존재할 경우만 업데이트)
-        User user = userService.findOrCreateUserByGoogle(email, name, refreshToken);
-
-        // 액세스 토큰 발급
-        String serviceToken = userService.createServiceToken(user);
-
-        // 클라이언트에 응답 (액세스 토큰 + 리프레시 토큰 포함)
-        return ResponseEntity.ok(Map.of(
-                "access_token", serviceToken,
-                "refresh_token", refreshToken
-        ));
+        // processGoogleAccessToken 메서드를 사용하여 사용자 정보 조회 및 처리
+        Map<String, Object> result = userService.processGoogleAccessToken(token);
+        if (result == null) {
+            return ResponseEntity.status(401).body("Google Login Failed");
+        }
+        return ResponseEntity.ok(result);
     }
 
     // ✅ 리프레시 토큰을 이용한 액세스 토큰 재발급

@@ -2,6 +2,7 @@ package com.example.backend.Repository;
 
 import com.example.backend.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -17,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // ✅ 리프레시 토큰을 기준으로 서버에서 사용자 검색
     Optional<User> findByRefreshToken(String refreshToken);
+
+    Optional<User> findByGoogleId(String googleId);
 }

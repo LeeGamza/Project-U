@@ -19,8 +19,11 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "google_id",nullable = false)
+    private String googleId;
+
     // === 카카오 로그인용 ID (DB 컬럼명: kakao_id) ===
-    @Column(name = "kakao_id")
+    @Column(name = "kakao_id",nullable = false)
     private String kakaoId;
 
     @Column(name = "email", nullable = false, unique = true, length = 40)
@@ -30,10 +33,10 @@ public class User {
     @Column(name = "password",nullable = false, length = 40)
     private String password;
 
-    @Column(name = "nickname", length = 20)
+    @Column(name = "nickname",nullable = false, length = 20)
     private String nickname;
 
-    @Column(name = "profile_image")
+    @Column(name = "profile_image",nullable = false)
     private String profileImage;
 
     @CreationTimestamp // 자동으로 현재 시간을 저장
@@ -82,6 +85,14 @@ public class User {
 
     public void setKakaoId(String kakaoId) {
         this.kakaoId = kakaoId;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     public String getEmail() {
@@ -168,6 +179,7 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 ", kakaoId='" + kakaoId + '\'' +
+                ", googleId='" + googleId + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
