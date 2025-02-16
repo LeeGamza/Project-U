@@ -8,24 +8,51 @@ import { IoChevronDown } from "react-icons/io5";
 import styles from "./_styles/searchPage.module.scss";
 import Image from "next/image";
 
+interface Post {
+    post_id: number;
+    user_id: number;
+    location_id: number;
+    title: string;
+    content: string;
+    image: string;
+    hits: number;
+    created_at: string;
+}
+
 const Home: React.FC = () => {
     const [isBellOpen, setIsBellOpen] = useState(false);
     const [isMessageOpen, setIsMessageOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [user, setUser] = useState({ username: "user_1" });
-
-    const posts = Array.from({ length: 12 }, (_, index) => ({
-        id: index,
-        title: "[놀자에요]",
-        image: "/Seoul_1.png",
-        author: "user_1",
-        date: "2025. 1. 21 00:00",
-        likes: "5.2K",
-    }));
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const toggleBellBox = () => setIsBellOpen((prev) => !prev);
     const toggleMessageBox = () => setIsMessageOpen((prev) => !prev);
     const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
+    const fetchPosts = async () => {
+        try {
+            const response = await fetch("/api/posts");
+            const data = await response.json();
+
+            if (response.status === 200) {
+                setPosts(data.data);
+            } else {
+                setError(data.message || "알 수 없는 오류 발생");
+            }
+        } catch (error) {
+            console.error("API 호출 중 오류 발생:", error);
+            setError("서버 오류가 발생했습니다. 다시 시도해 주세요.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -123,11 +150,11 @@ const Home: React.FC = () => {
 
             <div className={styles.mainContent}>
                 <h2 className={styles.sectionHeaderText}>
-                    {"'서울'에 대한 검색결과"}</h2>
+                    {"'서울'에 대한 검색결과"}
+                </h2>
                 <div className={styles.divider}></div>
 
                 <div className={styles.contentWrapper}>
-
                     <div className={styles.largeBox}>
                         <h1>서울</h1>
                         <h2>대한민국의 수도이자 최대 도시</h2>
@@ -159,7 +186,6 @@ const Home: React.FC = () => {
                         </div>
                     </div>
 
-
                     <div className={styles.rightBox}>
                         <p className={styles.rightBoxTitle}>자주 방문한 순위</p>
                         <div className={styles.rightBoxDivider}></div>
@@ -181,26 +207,30 @@ const Home: React.FC = () => {
 
                 <p className={styles.subHeaderText}>서울을 가본 사람들의 추억</p>
 
-
-                <div className={styles.cardGrid}>
-                    {posts.map((post) => (
-                        <div key={post.id} className={styles.card}>
-                            <img src={post.image} alt={post.title}/>
-                            <div className={styles.cardContent}>
-                                <div className={styles.cardTitle}>{post.title}</div>
-                                <div className={styles.cardAuthor}>
-                                    <img src="/profile4.jpg" alt="Author"/>
-                                    <span>{post.author}</span>
-                                </div>
-                                <div className={styles.cardMeta}>
-                                    <span>{post.likes} ⭐</span>
-                                    <span className={styles.cardDate}>작성일: {post.date}</span>
+                {loading ? (
+                    <p>로딩 중...</p>
+                ) : error ? (
+                    <p className={styles.errorText}>{error}</p>
+                ) : (
+                    <div className={styles.cardGrid}>
+                        {posts.map((post) => (
+                            <div key={post.post_id} className={styles.card}>
+                                <img src={post.image} alt={post.title}/>
+                                <div className={styles.cardContent}>
+                                    <div className={styles.cardTitle}>{post.title}</div>
+                                    <div className={styles.cardAuthor}>
+                                        <img src="/profile4.jpg" alt="Author"/>
+                                        <span>{post.user_id}</span>
+                                    </div>
+                                    <div className={styles.cardMeta}>
+                                        <span>{post.hits} ⭐</span>
+                                        <span className={styles.cardDate}>작성일: {post.created_at}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
