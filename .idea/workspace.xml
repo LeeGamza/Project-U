@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8e9dea73-65ed-4f2f-8c7f-0fe5ce22e7a7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/KakaoLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/KakaoLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/TokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Backend/src/main/java/com/example/backend/Controller/TokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/app/searchpage/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/app/searchpage/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx/src/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/nginx/src/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
     </option>
@@ -36,7 +38,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "searchpage__Sep__Comp",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/sp079/Desktop/Project-U",
     "node.js.detected.package.eslint": "true",
@@ -47,7 +49,7 @@
     "project.structure.last.edited": "모듈",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "ts.external.directory.path": "C:\\Users\\sp079\\Desktop\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\React Project\\Project-U\\nginx\\src\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -71,8 +73,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
       </set>
     </attachedChunks>
   </component>
@@ -96,6 +97,7 @@
       <workItem from="1737267111310" duration="1022000" />
       <workItem from="1737272607055" duration="1067000" />
       <workItem from="1737436070809" duration="617000" />
+      <workItem from="1739786592729" duration="2627000" />
     </task>
     <servers />
   </component>
@@ -109,6 +111,11 @@
           <url>file://$PROJECT_DIR$/nginx/src/app/login/page.tsx</url>
           <line>2</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/nginx/src/app/searchpage/_component/Header.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
